@@ -184,13 +184,8 @@ end
 
 case node['consul']['init_style']
 when 'init'
-  if platform?("ubuntu")
-    init_file = '/etc/init/consul.conf'
-    init_tmpl = 'consul.conf.erb'
-  else
-    init_file = '/etc/init.d/consul'
-    init_tmpl = 'consul-init.erb'
-  end
+  init_file = '/etc/init.d/consul'
+  init_tmpl = 'consul-init.erb'
 
   template node['consul']['etc_config_dir'] do
     source 'consul-sysconfig.erb'
@@ -209,7 +204,6 @@ when 'init'
   end
 
   service 'consul' do
-    provider Chef::Provider::Service::Upstart if platform?("ubuntu")
     supports status: true, restart: true, reload: true
     action [:enable, :start]
     subscribes :restart, "file[#{consul_config_filename}", :delayed
