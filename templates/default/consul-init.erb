@@ -51,9 +51,30 @@ case "$1" in
     stop)
     if is_running; then
         echo -n "Stopping $NAME..."
-        $NAME leave
-        rm -f "$PIDFILE"
-        echo "$NAME stopped"
+        kill -INT `get_pid`
+        for i in $(seq 1 10)
+        do
+            echo "Loop: $i"
+            if ! is_running; then
+                echo "Breaking: Not running"
+                break
+            fi
+
+            echo -n "."
+            sleep 2
+        done
+        echo
+
+        if is_running; then
+            echo "$NAME not stopped; may still be shutting down or shutdown may have failed"
+            exit 1
+        else
+            echo "$NAME stopped"
+            if [ -f "$PIDFILE" ]; then
+                echo "Removing: $PIDFILE"
+                rm "$PIDFILE"
+            fi
+        fi
     else
         echo "$NAME not running"
     fi
