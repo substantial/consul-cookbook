@@ -242,6 +242,14 @@ Installs and configures [Consul][1].
     </td>
     <td><tt>/etc/consul.d/cert.pem</tt></td>
   </tr>
+  <tr>
+    <td><tt>['consul']['go_max_procs]</tt></td>
+    <td>Integer</td>
+    <td>
+        See http://golang.org/pkg/runtime/
+    </td>
+    <td><tt>node['cpu']['total']</tt></td>
+  </tr>
 </table>
 
 ### Databag Attributes (optional)
@@ -440,4 +448,3 @@ Created and maintained by [John Bellone][3] [@johnbellone][2] (<jbellone@bloombe
 [5]: http://travis-ci.org/johnbellone/consul-cookbook
 [6]: https://coveralls.io/r/johnbellone/consul-cookbook
 [7]: https://docs.getchef.com/essentials_data_bags.html
-
