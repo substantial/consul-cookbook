@@ -96,3 +96,4 @@ default['consul']['client_addr'] = '0.0.0.0'
 default['consul']['ui_dir'] = '/var/lib/consul/ui'
 default['consul']['serve_ui'] = false
 default['consul']['extra_params'] = {}
+default['consul']['go_max_procs'] = node['cpu']['total']
