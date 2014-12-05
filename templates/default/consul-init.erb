@@ -54,9 +54,7 @@ case "$1" in
         kill -INT `get_pid`
         for i in $(seq 1 10)
         do
-            echo "Loop: $i"
             if ! is_running; then
-                echo "Breaking: Not running"
                 break
             fi
 
