@@ -73,12 +73,8 @@ when 'bootstrap'
   service_config['bootstrap'] = true
 when 'cluster'
   service_config['server'] = true
-  if num_cluster > 1
-    service_config['bootstrap_expect'] = num_cluster
-    service_config['start_join'] = node['consul']['servers']
-  else
-    service_config['bootstrap'] = true
-  end
+  service_config['bootstrap_expect'] = num_cluster
+  service_config['start_join'] = node['consul']['servers'] if num_cluster > 1
 when 'server'
   service_config['server'] = true
   service_config['start_join'] = node['consul']['servers']
