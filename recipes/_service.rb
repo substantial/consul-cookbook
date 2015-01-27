@@ -107,7 +107,7 @@ if node['consul']['serve_ui']
 end
 
 copy_params = [
-  :bind_addr, :datacenter, :domain, :log_level, :node_name, :advertise_addr, :ports, :enable_syslog
+  :bind_addr, :datacenter, :domain, :log_level, :node_name, :advertise_addr, :ports, :enable_syslog, :skip_leave_on_terminate
 ]
 copy_params.each do |key|
   if node['consul'][key]
