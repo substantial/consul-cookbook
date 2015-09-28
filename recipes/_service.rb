@@ -202,7 +202,7 @@ when 'init'
   service 'consul' do
     supports status: true, restart: true, reload: true
     action [:enable, :start]
-    subscribes :restart, "file[#{consul_config_filename}", :delayed
+    subscribes :restart, "file[#{consul_config_filename}]", :delayed
   end
 when 'runit'
   runit_service 'consul' do
