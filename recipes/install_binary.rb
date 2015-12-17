@@ -25,7 +25,7 @@ ark 'consul' do
   path node['consul']['install_dir']
   version node['consul']['version']
   checksum install_checksum
-  url ::URI.join(node['consul']['base_url'], "#{install_version}.zip").to_s
+  url ::URI.join(node['consul']['base_url'], node['consul']['version'], "consul_#{install_version}.zip").to_s
   action :dump
 end
 
